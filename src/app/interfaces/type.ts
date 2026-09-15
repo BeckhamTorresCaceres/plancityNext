@@ -1,17 +1,21 @@
-interface Category {
-  id: number;
+export interface Category {
+  id: string;
   name: string;
+  description: string; // Ajustado a inglés para mantener consistencia con el resto de campos
 }
 
-interface Product {
-  id: number;
-  img: string;
-  title: string;
+export interface Event {
+  id: string;
+  name: string;
   description: string;
-  categoria: Category["id"]; // Equivalente a number
+  date: string;
+  location: string;
+  price: number;
+  capacity: number;
+  categoryId: Category["id"];
+  images: string[]; // Cambiado a array de strings si vas a manejar múltiples URLs de imágenes
 }
-
-interface ProductCardProps {
-  product: Product;
-  categoryName?: string; // Opcional, por si quieres mostrar el nombre en lugar del ID
+export interface CardEventProps {
+  event: Event;
+  categoryName?: string;
 }

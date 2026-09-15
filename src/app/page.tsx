@@ -1,32 +1,52 @@
 import Link from "next/link";
-import ProductCard from "./components/card";
-import { categories, products } from "./data/data";
+import CardEvent from "./components/CardEvent";
+import { categories, events } from "./data/data";
 
 export default function Home() {
   return (
-    <div className="p-8 max-w-4xl mx-auto space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">
-        Bienvenido al mejor inventario de esta vaina, haz lo que vos querás
-      </h1>
-      <p className="text-gray-600 font-medium">
-        Hecho y recreado por el Beckham
-      </p>
+    <main className="min-h-screen bg-black text-white flex flex-col justify-center px-6 sm:px-16 lg:px-28">
+      <section className="max-w-6xl pt-35 pb-15">
+        <p className="text-blue-500 text-sm sm:text-base font-semibold tracking-widest uppercase mb-6">
+          Your city. Your events.
+        </p>
 
-      {/* Navegación a otras rutas */}
-      <div className="flex gap-4 pt-2">
-        <Link 
-          href="/products" 
-          className="bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
-        >
-          Ver Productos
-        </Link>
-        <Link 
-          href="/categories" 
-          className="bg-gray-100 text-gray-900 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
-        >
-          Ver Categorías
-        </Link>
-      </div>
-    </div>
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-none mb-8">
+          Discover what&apos;s{' '}
+          <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
+            happening
+          </span>{' '}
+          near you.
+        </h1>
+
+        <p className="text-gray-400 text-lg sm:text-xl md:text-2xl max-w-2xl leading-relaxed space-y-1">
+          <span>Browse events across music, sports, arts, food, and more.</span>
+          <br />
+          <span>Log in to save your favorites.</span>
+        </p>
+
+      </section>
+
+
+      <section className="pt-10 pb-15">
+
+      </section>
+
+      <section className=" pb-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => {
+            const category = categories.find((cat) => cat.id === event.categoryId);
+
+            return (
+              <CardEvent
+                key={event.id}
+                event={event}
+                categoryName={category?.name}
+              />
+            );
+          })}
+        </div>
+      </section>
+
+    </main>
   );
 }

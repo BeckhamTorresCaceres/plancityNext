@@ -19,3 +19,18 @@ export interface CardEventProps {
   event: Event;
   categoryName?: string;
 }
+export interface Props{
+  params: Promise<{id:string}> 
+}
+
+export interface EventPosterProps {
+  event: Event;
+  category?: Category;
+  isFavorite?: boolean;
+  onFavorite?: (id: string) => void;
+  onShare?: () => void;
+}
+
+export interface EventInfoCardsProps {
+  event: Event;
+}

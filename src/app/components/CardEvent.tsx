@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Heart, MapPin, Calendar, Users } from "lucide-react";
-import { Event } from "@/app/interfaces/type";
+import {  Event } from "@/app/interfaces/type";
 
 interface CardEventProps {
   event: Event;
@@ -78,7 +78,7 @@ export default function CardEvent({ event, categoryName = "General", isFavorite 
 
           <Link 
             href={`/events/${event.id}`} 
-            className="bg-transparent border border-blue-500/40 text-blue-400 px-4 py-1.5 rounded-full text-xs font-medium hover:bg-blue-500 hover:text-white transition-all"
+            className=" flex-col justify-center text-center flex h-11 w-23 bg-transparent border border-blue-500/40 text-blue-400 px-4 py-1.5 rounded-4xl text-2 font-medium hover:bg-blue-500 hover:text-white transition-all"
           >
             Details
           </Link>

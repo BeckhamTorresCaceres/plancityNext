@@ -16,7 +16,7 @@ export default async function EventsDetails({ params }: Props) {
     const category = categories.find((c) => c.id === event.categoryId);
 
     return (
-        <main className="min-h-screen bg-black text-white px-4 sm:px-12 lg:px-20 py-8">
+        <main className="min-h-screen bg-page text-fg theme-transition px-4 sm:px-12 lg:px-20 py-8">
             <div className="pt-18 mb-6">
                 <BackButton />
             </div>
@@ -36,10 +36,10 @@ export default async function EventsDetails({ params }: Props) {
 
                 {/* Sección Sobre el evento */}
                 <section className="space-y-3 mt-2 pt-8">
-                    <h2 className="text-4xl font-bold tracking-tight text-white">
+                    <h2 className="theme-transition text-4xl font-bold tracking-tight text-fg">
                         About this event
                     </h2>
-                    <p className="text-gray-400 text-xl leading-relaxed">
+                    <p className="theme-transition text-muted text-xl leading-relaxed">
                         {event.description}
                     </p>
                 </section>

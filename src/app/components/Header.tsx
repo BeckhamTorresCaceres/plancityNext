@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from "next/link";
 import LoginModal from "./Login";
 import RegisterModal from './Register';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -11,22 +12,24 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full h-20 bg-[#000003]/60 backdrop-blur-md border-b  flex items-center justify-between px-8 z-50">
-        <Link href="/" className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+      <header className="theme-transition fixed top-0 left-0 w-full h-20 bg-header backdrop-blur-md border-b border-theme flex items-center justify-between px-8 z-50">
+        <Link href="/" className="theme-transition text-2xl sm:text-3xl font-bold tracking-tight text-fg">
           PlanCity
         </Link>
         
         <div className="flex items-center gap-4">
+          <ThemeToggle />
+
           <button 
             onClick={() => setIsLoginOpen(true)}
-            className="text-white hover:text-gray-200 text-sm font-medium cursor-pointer"
+            className="theme-transition text-fg hover:opacity-80 text-xl font-medium cursor-pointer"
           >
             Log in
           </button>
           
           <button 
             onClick={() => setIsRegisterOpen(true)}
-            className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors cursor-pointer"
+            className="theme-transition bg-inverse text-inverse px-4 py-2 rounded-full text-xl font-medium hover:opacity-90 cursor-pointer"
           >
             Sign up
           </button>

@@ -1,1 +1,212 @@
 @import "tailwindcss";
+
+:root,
+html[data-theme="dark"] {
+  --page: #000000;
+  --fg: #ffffff;
+  --muted: #9ca3af;
+  --muted-2: #6b7280;
+  --card: #252525;
+  --card-inner: #1c1c1e;
+  --header: rgba(0, 0, 3, 0.6);
+  --footer: #000000;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --input: #1a1a1a;
+  --input-focus: #222222;
+  --chip-idle: #a3a3a3;
+  --inverse: #ffffff;
+  --inverse-fg: #000000;
+  --modal: rgba(23, 23, 23, 0.55);
+  --overlay: rgba(0, 0, 0, 0.6);
+  --placeholder: #737373;
+  --theme-duration: 1.5s;
+}
+
+html[data-theme="light"] {
+  --page: #f5f5f7;
+  --fg: #111111;
+  --muted: #4b5563;
+  --muted-2: #6b7280;
+  --card: #ffffff;
+  --card-inner: #ececf0;
+  --header: rgba(245, 245, 247, 0.75);
+  --footer: #f5f5f7;
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.22);
+  --input: #ffffff;
+  --input-focus: #ffffff;
+  --chip-idle: #6b7280;
+  --inverse: #111111;
+  --inverse-fg: #ffffff;
+  --modal: rgba(255, 255, 255, 0.82);
+  --overlay: rgba(0, 0, 0, 0.35);
+  --placeholder: #9ca3af;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: var(--page);
+  color: var(--fg);
+
+  transition:
+    background-color var(--theme-duration) ease,
+    color var(--theme-duration) ease,
+    border-color var(--theme-duration) ease;
+}
+
+html.theme-wave,
+html.theme-wave body,
+html.theme-wave .theme-transition,
+html.theme-wave .theme-card {
+  transition: none !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(root) {
+  animation-duration: var(--theme-duration);
+  animation-timing-function: ease-out;
+}
+
+html.theme-wave::view-transition-old(root) {
+  z-index: 2;
+
+  mask-image: url("/theme-wave-mask.svg");
+  mask-size: 100% 330%;
+  mask-repeat: no-repeat;
+  mask-position: 0% 0%;
+
+  -webkit-mask-image: url("/theme-wave-mask.svg");
+  -webkit-mask-size: 100% 330%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: 0% 0%;
+
+  animation: theme-wave-mask var(--theme-duration) ease-out forwards;
+}
+
+html.theme-wave::view-transition-new(root) {
+  z-index: 1;
+}
+
+@keyframes theme-wave-mask {
+  from {
+    mask-position: 0% 0%;
+    -webkit-mask-position: 0% 0%;
+  }
+
+  to {
+    mask-position: 0% 100%;
+    -webkit-mask-position: 0% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .theme-transition,
+  .theme-card {
+    transition: none !important;
+  }
+
+  html.theme-wave::view-transition-old(root) {
+    animation: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  html.theme-wave::view-transition-group(root) {
+    animation-duration: 0.01ms;
+  }
+}
+
+input::placeholder {
+  color: var(--placeholder);
+  transition: color var(--theme-duration) ease;
+}
+
+@layer utilities {
+  .theme-transition {
+    transition-property: background-color, color, border-color, fill, stroke;
+    transition-duration: var(--theme-duration);
+    transition-timing-function: ease;
+  }
+
+  .theme-card {
+    transition-property: background-color, color, border-color, transform;
+    transition-duration:
+      var(--theme-duration),
+      var(--theme-duration),
+      var(--theme-duration),
+      0.3s;
+    transition-timing-function: ease;
+  }
+
+  .bg-page {
+    background-color: var(--page);
+  }
+
+  .bg-card {
+    background-color: var(--card);
+  }
+
+  .bg-card-inner {
+    background-color: var(--card-inner);
+  }
+
+  .bg-header {
+    background-color: var(--header);
+  }
+
+  .bg-footer {
+    background-color: var(--footer);
+  }
+
+  .bg-input {
+    background-color: var(--input);
+  }
+
+  .bg-inverse {
+    background-color: var(--inverse);
+  }
+
+  .bg-modal {
+    background-color: var(--modal);
+  }
+
+  .bg-overlay {
+    background-color: var(--overlay);
+  }
+
+  .text-fg {
+    color: var(--fg);
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .text-muted-2 {
+    color: var(--muted-2);
+  }
+
+  .text-inverse {
+    color: var(--inverse-fg);
+  }
+
+  .border-theme {
+    border-color: var(--border);
+  }
+}

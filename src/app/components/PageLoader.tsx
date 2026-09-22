@@ -58,12 +58,11 @@ export default function PageLoader() {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/50 backdrop-blur-md transition-all duration-300 animate-fadeIn">
-      <div className="flex flex-col items-center gap-4 p-6 rounded-3xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-xl">
-        {/* Spinner estilo Apple / Neon */}
-        <div className="w-10 h-10 border-3 border-white/20 border-t-blue-500 rounded-full animate-spin" />
+    <div className="theme-transition fixed inset-0 z-[100] flex flex-col items-center justify-center bg-overlay backdrop-blur-md">
+      <div className="theme-transition flex flex-col items-center gap-4 p-6 rounded-3xl bg-modal border border-theme shadow-2xl backdrop-blur-xl">
+        <div className="w-10 h-10 border-3 border-theme border-t-blue-500 rounded-full animate-spin" />
         
-        <span className="text-xs font-semibold tracking-wider text-gray-300 uppercase">
+        <span className="text-xs font-semibold tracking-wider text-muted uppercase">
           Loading PlanCity...
         </span>
       </div>

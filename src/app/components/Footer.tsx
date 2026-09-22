@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full h-16 bg-black   flex items-center justify-center px-6 text-gray-500 text-sm">
+    <footer className="theme-transition w-full h-16 bg-footer flex items-center justify-center px-6 text-muted text-sm">
       <p>&copy; {new Date().getFullYear()}  PlanCity. Todos los derechos reservados.</p>
     </footer>
   );

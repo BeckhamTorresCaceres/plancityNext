@@ -30,7 +30,7 @@ export default function EventPoster({ event, category }: EventPosterProps) {
   };
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[580px] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-white/10 flex flex-col justify-between p-6 sm:p-8 group">
+    <section className="theme-transition relative w-full h-[500px] sm:h-[580px] rounded-3xl overflow-hidden shadow-2xl bg-card-inner border border-theme flex flex-col justify-between p-6 sm:p-8 group">
       <img 
         src={event.images?.[0] || "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3"} 
         alt={event.name} 

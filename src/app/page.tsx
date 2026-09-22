@@ -1,10 +1,9 @@
-import Link from "next/link";
-import CardEvent from "./components/CardEvent";
+import EventExplorer from "./components/EventExplorer";
 import { categories, events } from "./data/data";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col justify-center px-6 sm:px-16 lg:px-28">
+    <main className="min-h-screen bg-page text-fg theme-transition flex flex-col justify-center px-6 sm:px-16 lg:px-28">
       <section className="max-w-6xl pt-35 pb-15">
         <p className="text-blue-500 text-sm sm:text-base font-semibold tracking-widest uppercase mb-6">
           Your city. Your events.
@@ -18,35 +17,14 @@ export default function Home() {
           near you.
         </h1>
 
-        <p className="text-gray-400 text-lg sm:text-xl md:text-2xl max-w-2xl leading-relaxed space-y-1">
+        <p className="theme-transition text-muted text-lg sm:text-xl md:text-2xl max-w-2xl leading-relaxed space-y-1">
           <span>Browse events across music, sports, arts, food, and more.</span>
           <br />
           <span>Log in to save your favorites.</span>
         </p>
-
       </section>
 
-
-      <section className="pt-10 pb-15">
-
-      </section>
-
-      <section className=" pb-40">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event) => {
-            const category = categories.find((cat) => cat.id === event.categoryId);
-
-            return (
-              <CardEvent
-                key={event.id}
-                event={event}
-                categoryName={category?.name}
-              />
-            );
-          })}
-        </div>
-      </section>
-
+      <EventExplorer events={events} categories={categories} />
     </main>
   );
 }

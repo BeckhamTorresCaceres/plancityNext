@@ -3,18 +3,18 @@ import { Category, Event } from "../interfaces/type";
 export const categories: Category[] = [
   {
     id: "1",
-    name: "Miniteka",
-    description: "como si fuera una discoteca pero pequeña",
-  },
-  {
-    id: "2",
     name: "Music",
     description: "Live concerts, DJ sets, and electronic festivals",
   },
   {
-    id: "3",
+    id: "2",
     name: "Sports",
     description: "Marathons, tournaments, and outdoor athletic events",
+  },
+  {
+    id: "3",
+    name: "Art & Culture",
+    description: "Exhibitions, theater, and cultural experiences",
   },
   {
     id: "4",
@@ -25,6 +25,16 @@ export const categories: Category[] = [
     id: "5",
     name: "Tech",
     description: "Developer conferences, AI summits, and innovation hubs",
+  },
+  {
+    id: "6",
+    name: "Nightlife",
+    description: "Clubs, late-night sets, and after-hours events",
+  },
+  {
+    id: "7",
+    name: "Outdoors",
+    description: "Hikes, parks, and open-air gatherings",
   },
 ];
 
@@ -37,7 +47,7 @@ export const events: Event[] = [
     location: "Barranquilla / La Chinita",
     price: 1000,
     capacity: 50,
-    categoryId: "1",
+    categoryId: "6",
     images: [
       "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=500&fit=crop&auto=format"
     ],
@@ -50,7 +60,7 @@ export const events: Event[] = [
     location: "Warehouse 23, Berlin",
     price: 45,
     capacity: 2400,
-    categoryId: "2",
+    categoryId: "1",
     images: [
       "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=500&fit=crop&auto=format"
     ],
@@ -63,7 +73,7 @@ export const events: Event[] = [
     location: "Central Park, New York",
     price: 80,
     capacity: 15000,
-    categoryId: "3",
+    categoryId: "2",
     images: [
       "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=800&h=500&fit=crop&auto=format"
     ],
@@ -102,7 +112,7 @@ export const events: Event[] = [
     location: "SkyBar Rooftop, Chicago",
     price: 35,
     capacity: 420,
-    categoryId: "2",
+    categoryId: "1",
     images: [
       "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&h=500&fit=crop&auto=format"
     ],

@@ -1,5 +1,5 @@
-import EventExplorer from "./components/EventExplorer";
-import { categories, events } from "./data/data";
+import EventExplorer from "../components/EventExplorer";
+import { categories, events } from "../data/data";
 
 export default function Home() {
   return (

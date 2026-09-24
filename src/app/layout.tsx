@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import "./globals.css";
-import PageLoader from "./components/PageLoader";
-import { Suspense } from "react";
 import ThemeProvider from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
@@ -24,16 +20,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-page text-fg justify-center theme-transition">
-        <ThemeProvider>
-          <Suspense fallback={null}>
-            <PageLoader />
-          </Suspense>
-          <Header />
-
-          <main className="flex-1">{children}</main>
-
-          <Footer />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

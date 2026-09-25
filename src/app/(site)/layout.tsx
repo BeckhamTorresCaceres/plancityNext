@@ -1,16 +1,18 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import PageLoader from "../components/PageLoader";
 import { Suspense } from "react";
+import Header from "@/features/site-shell/components/Header";
+import Footer from "@/features/site-shell/components/Footer";
+import PageLoader from "@/features/site-shell/components/PageLoader";
 
-export default function SiteLayout({  children }: Readonly<{children: React.ReactNode;}>) {
+export default function SiteLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
       <Suspense fallback={null}>
-      <PageLoader />
+        <PageLoader />
       </Suspense>
       <Header />
-      <main className="flex-1">{children}</main>
+      <div className="flex-1">{children}</div>
       <Footer />
     </>
   );

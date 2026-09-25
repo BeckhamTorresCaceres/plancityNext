@@ -147,10 +147,7 @@ input::placeholder {
   .theme-card {
     transition-property: background-color, color, border-color, transform;
     transition-duration:
-      var(--theme-duration),
-      var(--theme-duration),
-      var(--theme-duration),
-      0.3s;
+      var(--theme-duration), var(--theme-duration), var(--theme-duration), 0.3s;
     transition-timing-function: ease;
   }
 

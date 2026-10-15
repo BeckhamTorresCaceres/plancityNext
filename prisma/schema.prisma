@@ -1,0 +1,82 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["partialIndexes"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model password_credentials {
+  user_id             String   @id @db.Uuid
+  password_hash       String
+  password_changed_at DateTime @default(now()) @db.Timestamptz(6)
+  users               users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model sessions {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String    @db.Uuid
+  token_hash String    @unique
+  expires_at DateTime  @db.Timestamptz(6)
+  revoked_at DateTime? @db.Timestamptz(6)
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([expires_at], map: "sessions_active_expiry_idx", where: raw("(revoked_at IS NULL)"))
+  @@index([user_id])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model user_identities {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id          String   @db.Uuid
+  provider         String
+  provider_subject String
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+  users            users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([provider, provider_subject], map: "user_identities_provider_subject_unique")
+  @@index([user_id])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+/// The database also has the expression index users_email_unique on lower(email).
+/// Prisma Client cannot represent it; preserve it in Supabase and avoid schema pushes.
+model users {
+  id                   String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                 String
+  email                String?
+  role                 user_role             @default(USER)
+  status               user_status           @default(ACTIVE)
+  avatar_url           String?
+  avatar_source        avatar_source         @default(DEFAULT)
+  avatar_updated_at    DateTime?             @db.Timestamptz(6)
+  created_at           DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime              @default(now()) @db.Timestamptz(6)
+  avatar_storage_path  String?
+  avatar_provider_url  String?
+  password_credentials password_credentials?
+  sessions             sessions[]
+  user_identities      user_identities[]
+}
+
+enum avatar_source {
+  DEFAULT
+  OAUTH
+  UPLOAD
+}
+
+enum user_role {
+  USER
+  ADMIN
+}
+
+enum user_status {
+  ACTIVE
+  SUSPENDED
+}

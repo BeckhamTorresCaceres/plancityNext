@@ -1,3 +1,5 @@
+export type EventStatus = "PENDING" | "APPROVED" | "REJECTED";
+
 export interface Category {
   id: string;
   name: string;
@@ -14,6 +16,27 @@ export interface Event {
   capacity: number;
   categoryId: Category["id"];
   images: string[];
+  status: EventStatus;
+  authorId?: string;
+  authorName?: string;
+}
+
+export interface CreateEventInput {
+  name: string;
+  description: string;
+  date: string;
+  location: string;
+  price: number;
+  capacity: number;
+  categoryId: string;
+  images?: string[];
+}
+
+export interface CreateEventModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  categories: Category[];
+  onSubmitEvent: (input: CreateEventInput) => void;
 }
 
 export interface CardEventProps {

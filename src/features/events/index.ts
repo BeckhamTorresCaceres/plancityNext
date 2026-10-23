@@ -5,3 +5,4 @@ export { default as EventPoster } from "./components/EventPoster";
 export { default as EventInfoCards } from "./components/EventInfoCards";
 export { default as CardEvent } from "./components/CardEvent";
 export { default as EventsTable } from "./components/EventsTable";
+export { default as CreateEventModal } from "./components/CreateEventModal";

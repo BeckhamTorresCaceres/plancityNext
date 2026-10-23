@@ -7,26 +7,24 @@ export function useDashboardStats(events: Event[], users: User[]) {
   return useMemo<DashboardStat[]>(
     () => [
       {
-        label: "Total Events",
-        value: String(events.length),
-        description: "Available on PlanCity",
+        label: "Eventos Aprobados",
+        value: String(events.filter((e) => e.status === "APPROVED").length),
+        description: "Públicos en la plataforma",
       },
       {
-        label: "Categories",
-        value: String(new Set(events.map((event) => event.categoryId)).size),
-        description: "Currently in use",
+        label: "Por Aprobar",
+        value: String(events.filter((e) => e.status === "PENDING").length),
+        description: "Enviados por clientes",
       },
       {
-        label: "Users",
+        label: "Usuarios Registrados",
         value: String(users.length),
-        description: "Registered users",
+        description: "Clientes y administradores",
       },
       {
-        label: "Capacity",
-        value: events
-          .reduce((total, event) => total + event.capacity, 0)
-          .toLocaleString(),
-        description: "Combined event capacity",
+        label: "Categorías",
+        value: String(new Set(events.map((event) => event.categoryId)).size),
+        description: "Actualmente en uso",
       },
     ],
     [events, users],

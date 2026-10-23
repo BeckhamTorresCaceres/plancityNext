@@ -11,7 +11,7 @@ export default async function EventsDetails({
 }) {
   const { id } = await params;
   const event = events.find((item) => item.id === id);
-  if (!event) redirect("/");
+  if (!event || event.status !== "APPROVED") redirect("/");
   const category = categories.find((item) => item.id === event.categoryId);
 
   return (

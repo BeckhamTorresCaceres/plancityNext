@@ -1,11 +1,11 @@
 "use client";
-import { CalendarDays, Users, Tags, Gauge } from "lucide-react";
+import { CalendarDays, Clock, Users, Tags } from "lucide-react";
 import { events } from "@/features/events/data/events.data";
 import { users } from "@/features/users/data/users.data";
 import { useDashboardStats } from "../hooks/useDashboardStats";
 export default function DashboardView() {
   const stats = useDashboardStats(events, users);
-  const icons = [CalendarDays, Tags, Users, Gauge];
+  const icons = [CalendarDays, Clock, Users, Tags];
   return (
     <div className="space-y-7">
       <div>
